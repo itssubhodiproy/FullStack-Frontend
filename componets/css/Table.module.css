@@ -1,0 +1,94 @@
+.table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    border-radius: 20px;
+    padding: 0;
+    table-layout: fixed;
+  }
+  
+  .tr {
+    border: 1px solid #ddd;
+    padding: .40em;
+    align-items: center;
+  }
+  
+  .th,
+  .td {
+    padding: 1em;
+    text-align: center;
+  }
+  .td{
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .text{
+    font-size: 16px;
+    line-height: 20px;
+  }
+  
+  .th {
+    font-size: 16px;
+    line-height: 24px;
+    background-color: #f8f8f8;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .table {
+      border: 0;
+    }
+    
+    .thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    .tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    .td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .6em;
+      text-align: right;
+    }
+    
+    .td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+    
+    .td:last-child {
+      border-bottom: 0;
+    }
+  }
+  
+  
+  /* general styling */
+  .body{
+    font-family: "kumbh sans", sans-serif;
+    line-height: 1.25;
+  }
+  .profile-pic{
+    width: 44px;
+    height: 44px ;
+    border-radius: 50%;
+  }
+  .threeDot-profile {
+    background-color: #f8f7f8;
+    padding: 12px;
+    border-radius: 50%;
+    border: 1px solid #e7e7e7;
+  }
+  .threeDot-profile:hover{
+      background-color: rgb(234, 234, 234);
+  }

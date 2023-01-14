@@ -1,0 +1,26 @@
+.footer{
+    background-color: rgb(233, 233, 233);
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    text-align: center;
+    height: 8vh;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.active{
+    background-color: rgb(130, 130, 130);
+    color: rgb(255, 255, 255);
+}
+.active:hover{
+    background-color: rgb(130, 130, 130);
+    color: rgb(255, 255, 255);
+}
+@media screen and (max-width: 768px){
+    .footer{
+        border-radius: 10px;
+        border: 1px solid rgb(214, 214, 214);
+        padding: 0;
+        padding-left: 5px;
+        padding-right: 5px; 
+    }
+}

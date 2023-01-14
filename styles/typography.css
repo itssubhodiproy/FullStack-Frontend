@@ -1,0 +1,104 @@
+/* Typorgraphy file for Scaling. Do create all classes for each font and line height use in your project. */
+
+/* 32px */
+h1,.h1{
+    font-size: clamp(1.625rem, 1.5500rem + 0.3750vw, 2rem);
+    margin:0;
+}
+/* 26px */
+h2,.h2{
+    font-size: clamp(1.375rem, 1.3250rem + 0.2500vw, 1.625rem);
+    margin:0;
+}
+/* 20px */
+h3,.h3{
+    font-size: clamp(1.125rem, 1.1000rem + 0.1250vw, 1.25rem);
+    margin:0;
+}
+/* 18px */
+h4,.h4{
+    font-size: clamp(1rem, 0.9750rem + 0.1250vw, 1.125rem);
+    margin:0;
+}
+/* 16px */
+h5,.h5{
+    font-size: clamp(0.875rem, 0.8500rem + 0.1250vw, 1rem);
+    margin:0;
+}
+/* 14px */
+h6,.h6{
+    font-size: clamp(0.75rem, 0.7250rem + 0.1250vw, 0.875rem);
+    margin:0;
+}
+p,li,span{
+    font-size: clamp(0.875rem, 0.8500rem + 0.1250vw, 1rem);	
+}
+.font-10{
+    font-size: clamp(0.5rem, 0.4750rem + 0.1250vw, 0.625rem);
+}
+.font-24{
+    font-size: clamp(1rem, 0.7131rem + 0.6557vw, 1.5rem);
+}
+.l-14{
+   line-height: clamp(0.75rem, 0.7250rem + 0.1250vw, 0.875rem);
+}
+.l-20{
+    line-height: clamp(1.125rem, 1.1000rem + 0.1250vw, 1.25rem);
+}
+.l-22{
+    line-height: clamp(1.25rem, 1.2250rem + 0.1250vw, 1.375rem);
+}
+.l-26{
+    line-height: clamp(1.375rem, 1.3250rem + 0.2500vw, 1.625rem);
+}
+.l-28{
+    line-height: clamp(1.375rem, 1.3000rem + 0.3750vw, 1.75rem);
+}
+.l-32{
+    line-height: clamp(1.625rem, 1.5500rem + 0.3750vw, 2rem);
+}
+.l-40{
+    line-height: clamp(2.0625rem, 1.9750rem + 0.4375vw, 2.5rem);
+}
+.f-300{
+    font-weight: 300;
+}
+.f-400{
+    font-weight: 400;
+}
+.f-500{
+    font-weight: 500;
+}
+.f-600{
+    font-weight: 600;
+}
+.f-700{
+    font-weight: 700;
+}
+.f-800{
+    font-weight: 800;
+}
+.f-900{
+    font-weight:900;
+}
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+.text-uppercase{
+    text-transform: uppercase;
+}
+.text-lowercase{
+    text-transform: lowercase;
+}
+.text-capitalize{
+    text-transform: capitalize;
+}
+.text{
+    font-size: 20px;
+}
