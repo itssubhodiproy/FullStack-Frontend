@@ -12,19 +12,18 @@ export const Footer = () => {
   };
 
   const incrementRootPage = () => {
-    console.log(totalPage)
-    if (totalPage - 2 > middlePage) 
-    setMiddlePage(middlePage + 1);
+    console.log(totalPage);
+    if (middlePage + 1 <= totalPage - 2) setMiddlePage(middlePage + 1);
   };
   const decrementRootPage = () => {
     if (middlePage > 3) setMiddlePage(middlePage - 1);
   };
 
   useEffect(() => {
-    if (totalLength % 2 == 0) {
+    if (totalLength % 5 == 0) {
       setTotalPage(Math.floor(totalLength / 5));
     } else {
-      setTotalPage(Math.floor(totalLength / 5) + 5);
+      setTotalPage(Math.floor(totalLength / 5) + 1);
     }
   }, [totalLength]);
 
