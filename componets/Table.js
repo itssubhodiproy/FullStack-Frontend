@@ -1,18 +1,33 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./css/Table.module.css";
 import { PageContext } from "../Helper/context";
+import { DeleteUser } from "./modals/DeleteUser";
+import Modal from "../Helper/Modal";
 
 const Table = ({ page }) => {
-  const [Edit, setEdit] = useState(false);
-  const [Delete, setDelete] = useState(false);
+  const [EditModal, setEditModal] = useState(false);
+  const [DeleteModal, setDeleteModal] = useState(false);
   const { Data } = useContext(PageContext);
+  const [userId, setUserId] = useState("");
 
-  const EditHandler = () => {
-    setEdit(!Edit);
+  const OpenEditModal = (e) => {
+    setUserId(e.target.id);
+    if (EditModal === false) setEditModal(true);
+  };
+  const CloseEditModal = () => {
+    if (EditModal === true) setEditModal(false);
   };
 
-  const DeleteHandler = () => {
-    setDelete(!Delete);
+  const OpenDeleteModal = (e) => {
+    if (DeleteModal === false) {
+      // console.log(e.target.id);
+      setUserId(e.target.id);
+      setDeleteModal(true);
+    }
+    // console.log(e.target.id);
+  };
+  const CloseDeleteModal = () => {
+    if (DeleteModal === true) setDeleteModal(false);
   };
 
   return (
@@ -62,39 +77,41 @@ const Table = ({ page }) => {
               <td className={`${styles["td"]}`} data-label="Last Login">
                 22/12/2021
               </td>
-              <td
-                className={`${styles["td"]}`}
-                data-label=""
-                onClick={EditHandler}
-              >
+              <td className={`${styles["td"]}`} data-label="">
                 <div
+                  onClick={OpenEditModal}
                   className={`btn d-flex d-justify-center d-align-center ${styles["threeDot-profile"]} cursor-pointer`}
                 >
                   <img src="/edit.svg"></img>
                 </div>
               </td>
-              <td
-                className={`${styles["td"]}`}
-                data-label=""
-                onClick={DeleteHandler}
-              >
+              <td className={`${styles["td"]}`} data-label="">
                 <div
+                  onClick={OpenDeleteModal}
+                  id={item._id}
                   className={`btn d-flex d-justify-center d-align-center ${styles["threeDot-profile"]} cursor-pointer`}
                 >
-                  <img src="/delete.svg"></img>
+                  <img
+                    src="/delete.svg"
+                    onClick={OpenDeleteModal}
+                    id={item._id}
+                  ></img>
                 </div>
               </td>
             </tr>
           ))}
-        {Data.length === 0 && (
-          <div className="p-5">No data available</div>
-        )}
+        {Data.length === 0 && <div className="p-5">No data available</div>}
       </tbody>
-      {/* {ThreeDots && (
+      {DeleteModal && (
         <Modal modalClass="modal-verify">
-          <ThreeDotModal handler={ThreeDotHandler} />
+          <DeleteUser handler={CloseDeleteModal} userId={userId} />
         </Modal>
-      )} */}
+      )}
+      {EditModal && (
+        <Modal modalClass="modal-verify">
+          <DeleteUser handler={CloseDeleteModal} userId={userId} />
+        </Modal>
+      )}
     </table>
   );
 };

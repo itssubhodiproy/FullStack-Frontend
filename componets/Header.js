@@ -7,8 +7,6 @@ import AddUser from "./modals/AddUser";
 const Header = () => {
   const [addUser, setAddUser] = useState(false);
 
-  const { activePage, setActivePage } = useContext(PageContext);
-
   const addUserHandler = () => {
     setAddUser(!addUser);
   };

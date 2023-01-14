@@ -13,7 +13,8 @@ export const Footer = () => {
 
   const incrementRootPage = () => {
     console.log(totalPage)
-    if (totalPage - 2 > middlePage) setMiddlePage(middlePage + 1);
+    if (totalPage - 2 > middlePage) 
+    setMiddlePage(middlePage + 1);
   };
   const decrementRootPage = () => {
     if (middlePage > 3) setMiddlePage(middlePage - 1);
@@ -29,7 +30,7 @@ export const Footer = () => {
 
   return (
     <div
-      className={`${styles["footer"]} d-flex d-justify-space-between d-align-center gap-2`}
+      className={`${styles["footer"]} d-flex d-justify-space-between d-align-center gap-1`}
     >
       <div
         onClick={decrementRootPage}
