@@ -9,6 +9,16 @@ const inter = Inter({ subsets: ["latin"] });
 
 import { PageContext } from "../Helper/context";
 
+const addUser = async () => {
+  const res = await api.post("/create-user", {
+    name: req.body.name,
+    email: req.body.email,
+    status: req.body.status,
+    role: req.body.role,
+  });
+  console.log(res);
+};
+
 export default function Home() {
   const [activePage, setActivePage] = useState(1);
 
@@ -26,7 +36,6 @@ export default function Home() {
   useEffect(() => {
     const getAllData = async () => {
       const resAll = await api.get(`/user`);
-      // console.log(resAll.data.user.length);
       setTotalLength(resAll.data.user.length);
     };
     getAllData();
@@ -35,11 +44,18 @@ export default function Home() {
   return (
     <>
       <PageContext.Provider
-        value={{ activePage, setActivePage, totalLength, setTotalLength, Data, setData }}
+        value={{
+          activePage,
+          setActivePage,
+          totalLength,
+          setTotalLength,
+          Data,
+          setData,
+        }}
       >
         <div className="d-flex d-align-center d-justify-center center">
           <div className={`d-flex d-flex-column main-child`}>
-            <Header />
+            <Header handler={addUser} />
             <Table />
             <Footer />
           </div>

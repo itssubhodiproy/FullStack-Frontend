@@ -1,0 +1,37 @@
+.card {
+    width:30vw;
+    min-width: 320px;
+    background: #ffffff;
+    border-radius: 20px;
+  }
+  .cross{
+      padding: 6px;
+      border-radius: 50%;
+      background: #f5f5f5;
+  }
+  .cross:hover{
+      background: #e0e0e0;
+  }
+  .button{
+      margin-bottom:25px;
+  }
+  .input-field {
+    margin-top: 8px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgb(179, 179, 179);
+    padding: 12px;
+    font-size: 20px;
+  }
+  .input-field {
+    outline: none;
+  }
+  .dropdown select{
+    width: 30%;
+    background-color: rgb(241, 241, 241);
+    padding: 4px 8px 4px 8px;
+    border-radius: 10px;
+    border: 1px solid rgb(179, 179, 179);
+    font-size: 16px;
+    outline: none;
+  }

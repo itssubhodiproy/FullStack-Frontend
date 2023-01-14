@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./css/Table.module.css";
-import axios from "axios";
-import api from "../api";
 import { PageContext } from "../Helper/context";
 
 const Table = ({ page }) => {
@@ -42,14 +40,14 @@ const Table = ({ page }) => {
           Data?.map((item) => (
             <tr className={`${styles["tr"]}`}>
               <td className={`${styles["td"]}`} data-label="">
-                <div className="d-flex d-justify-center gap-2 d-align-center">
+                <div className="d-flex d-justify-center gap-2 d-align-center col-12">
                   <div className="d-flex">
                     <img
-                      className={`${styles["profile-pic"]}`}
-                      src={`https://api.dicebear.com/5.x/fun-emoji/svg?seed=${item._id}`}
+                      className={`${styles["profile-pic"]} col-4`}
+                      src={`https://api.dicebear.com/5.x/adventurer/svg?seed=${item._id}`}
                     ></img>
                   </div>
-                  <div className="d-flex d-flex-column d-align-start">
+                  <div className="d-flex d-flex-column d-align-start col-8">
                     <div className={`${styles["text"]}`}>{item.name}</div>
                     <div className={`${styles["text"]}`}>{item.email}</div>
                   </div>
