@@ -114,7 +114,7 @@ const Table = () => {
               </td>
             </tr>
           ))}
-        {Data.length === 0 && <div className="p-5">No data available</div>}
+        {Data.length === 0 && <div className="p-5">Loading...</div>}
       </tbody>
       {DeleteModal && (
         <Modal modalClass="modal-verify">
