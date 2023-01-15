@@ -3,28 +3,33 @@ import styles from "./css/Table.module.css";
 import { PageContext } from "../Helper/context";
 import { DeleteUser } from "./modals/DeleteUser";
 import Modal from "../Helper/Modal";
+import { EditForm } from "./modals/EditForm";
+import api from "../api";
 
 const Table = ({ page }) => {
   const [EditModal, setEditModal] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
   const { Data } = useContext(PageContext);
   const [userId, setUserId] = useState("");
+  const [userDataObj, setUserDataObj] = useState({});
 
-  const OpenEditModal = (e) => {
-    setUserId(e.target.id);
-    if (EditModal === false) setEditModal(true);
+  const OpenEditModal = async (e) => {
+    if (EditModal === false) {
+      const res = await api.get(`/user?id=${e.target.id}`);
+      setUserDataObj(res.data.singleUser);
+      setUserId(e.target.id);
+      setEditModal(true);
+    }
   };
   const CloseEditModal = () => {
-    if (EditModal === true) setEditModal(false);
+    if (EditModal == true) setEditModal(false);
   };
 
   const OpenDeleteModal = (e) => {
     if (DeleteModal === false) {
-      // console.log(e.target.id);
       setUserId(e.target.id);
       setDeleteModal(true);
     }
-    // console.log(e.target.id);
   };
   const CloseDeleteModal = () => {
     if (DeleteModal === true) setDeleteModal(false);
@@ -80,9 +85,14 @@ const Table = ({ page }) => {
               <td className={`${styles["td"]}`} data-label="">
                 <div
                   onClick={OpenEditModal}
+                  id={item._id}
                   className={`btn d-flex d-justify-center d-align-center ${styles["threeDot-profile"]} cursor-pointer`}
                 >
-                  <img src="/edit.svg"></img>
+                  <img
+                    src="/edit.svg"
+                    onClick={OpenEditModal}
+                    id={item._id}
+                  ></img>
                 </div>
               </td>
               <td className={`${styles["td"]}`} data-label="">
@@ -109,7 +119,10 @@ const Table = ({ page }) => {
       )}
       {EditModal && (
         <Modal modalClass="modal-verify">
-          <DeleteUser handler={CloseDeleteModal} userId={userId} />
+          {/* <EditUser handler={CloseEditModal} id={userId} /> */}
+          {/* <div>{userId}</div>
+          <button onClick={CloseEditModal}>Click Me</button> */}
+          <EditForm handler={CloseEditModal} userId={userId} userData={userDataObj}/>
         </Modal>
       )}
     </table>

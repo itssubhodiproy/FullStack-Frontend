@@ -1,46 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../api";
 import styles from "./css/common.module.css";
 import { PageContext } from "../../Helper/context";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const AddUser = ({ handler }) => {
+export const EditForm = ({ handler, userData }) => {
   const { setTriggerThisApi } = useContext(PageContext);
 
-  const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Role, setRole] = useState("User");
-  const [Status, setStatus] = useState("Active");
+  const [Name, setName] = useState(userData.name);
+  const [Email, setEmail] = useState(userData.email);
+  const [Role, setRole] = useState(userData.role);
+  const [Status, setStatus] = useState(userData.status);
 
-  const addUser = async () => {
-    // if input field is empty throw an error
-    if (Name == "" || Email == "") {
-      console.log("Please fill all the fields");
-      toast.warn("Please fill all the fields!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-
-      return;
-    }
-
+  const EditUserOnSubmit = async () => {
+    if (Name == "" || Email == "" || Role == "" || Status == "") return;
     try {
-      const res = await api.post("/create-user", {
+      const res = await api.patch(`/update-user?id=${userData._id}`, {
         name: Name,
         email: Email,
-        status: Role,
-        role: Status,
+        role: Role,
+        status: Status,
       });
       if (res.status == 200) {
-        console.log("User added successfully!");
+        console.log("User updated successfully!");
         setTriggerThisApi((prev) => !prev);
         handler();
       }
@@ -91,6 +72,7 @@ const AddUser = ({ handler }) => {
               <select
                 name="role"
                 id="role"
+                value={Role}
                 onChange={(val) => setRole(val.target.value)}
                 required={true}
               >
@@ -109,8 +91,9 @@ const AddUser = ({ handler }) => {
               <select
                 name="status"
                 id="status"
+                value={Status}
                 onChange={(val) => setStatus(val.target.value)}
-                required={true}
+                // required={true}
               >
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
@@ -124,29 +107,13 @@ const AddUser = ({ handler }) => {
         >
           <div
             className={`btn btn-primary p-3 d-flex d-justify-center d-align-center gap-1`}
-            onClick={addUser}
+            onClick={EditUserOnSubmit}
           >
-            <img src="/plus.svg"></img>
-            <h3 className="disable-mobile">Add</h3>
+            {/* <img src="/edit.svg"></img> */}
+            <h3 className="">Update</h3>
           </div>
         </div>
-
-        {/* Toast Message */}
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
       </div>
     </>
   );
 };
-
-export default AddUser;

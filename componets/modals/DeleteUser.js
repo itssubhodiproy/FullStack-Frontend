@@ -4,17 +4,19 @@ import { PageContext } from "../../Helper/context";
 import api from "../../api";
 
 export const DeleteUser = ({ handler, userId }) => {
-  const { isDeleteUser, setIsDeleteUser } = useContext(PageContext);
+  const { setTriggerThisApi } = useContext(PageContext);
 
   const deleteUserHandler = async () => {
     try {
       const res = await api.delete(`/delete-user?id=${userId}`);
       if (res.status == 200) {
-        setIsDeleteUser((prev) => !prev);
+        setTriggerThisApi((prev) => !prev);
         console.log("User deleted successfully");
         handler();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return (

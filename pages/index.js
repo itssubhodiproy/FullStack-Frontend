@@ -8,9 +8,7 @@ import { PageContext } from "../Helper/context";
 
 export default function Home() {
   const [activePage, setActivePage] = useState(1);
-  const [isAddUserSubmitted, setIsAddUserSubmitted] = useState(false);
-  const [isDeleteUser, setIsDeleteUser] = useState(false);
-  const [isEditUser, setIsEditUser] = useState(false);
+  const [triggerThisApi, setTriggerThisApi] = useState(false);
 
   const [Data, setData] = useState([]);
   const [totalLength, setTotalLength] = useState(0);
@@ -24,7 +22,7 @@ export default function Home() {
       console.log(res.data.user);
     };
     getData();
-  }, [activePage, isAddUserSubmitted, isDeleteUser, isEditUser]);
+  }, [activePage, triggerThisApi]);
 
   // useEffect(() => {
   //   const getAllData = async () => {
@@ -45,12 +43,7 @@ export default function Home() {
           setTotalLength,
           Data,
           setData,
-          isAddUserSubmitted,
-          setIsAddUserSubmitted,
-          isDeleteUser,
-          setIsDeleteUser,
-          isEditUser,
-          setIsEditUser,
+          setTriggerThisApi
         }}
       >
         <div className="d-flex d-align-center d-justify-center center">
