@@ -10,12 +10,14 @@ export default function Home() {
   const [triggerThisApi, setTriggerThisApi] = useState(false);
   const [Data, setData] = useState([]);
   const [totalLength, setTotalLength] = useState(0);
+  const [AllData, setAllData] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       const res = await getPageData({ limit: 5, activePage });
       const resAll = await getAllData();
       setData(res);
+      setAllData(resAll);
       setTotalLength(resAll.length);
     };
     getData();
@@ -31,12 +33,13 @@ export default function Home() {
           setTotalLength,
           Data,
           setData,
-          setTriggerThisApi
+          setTriggerThisApi,
+          AllData
         }}
       >
         <div className="d-flex d-align-center d-justify-center center">
           <div className={`d-flex d-flex-column main-child`}>
-            <Header />
+            <Header allData={AllData} />
             <Table />
             <Footer />
           </div>

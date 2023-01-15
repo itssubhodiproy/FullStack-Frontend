@@ -3,11 +3,27 @@ import styles from "./css/Header.module.css";
 import { PageContext } from "../Helper/context";
 import Modal from "../Helper/Modal";
 import AddUser from "./modals/AddUser";
+import csvDownload from "json-to-csv-export";
 
 const Header = () => {
   const [addUser, setAddUser] = useState(false);
+  const { AllData } = useContext(PageContext);
 
-  const {totalLength} = useContext(PageContext);
+  const dataToConvert = {
+    data: AllData,
+    filename: "UserList",
+    delimiter: ",",
+    headers: [
+      "id",
+      "Name",
+      "Email",
+      "Status",
+      "Role",
+      "createdAt",
+    ],
+  };
+
+  const { totalLength } = useContext(PageContext);
 
   const addUserHandler = () => {
     setAddUser(!addUser);
@@ -22,7 +38,10 @@ const Header = () => {
           </h6>
         </div>
         <div className="d-flex d-justify-space-between gap-2">
-          <div className="btn btn-secondary p-4 d-flex d-justify-center d-align-center gap-1">
+          <div
+            className="btn btn-secondary p-4 d-flex d-justify-center d-align-center gap-1"
+            onClick={() => csvDownload(dataToConvert)}
+          >
             <img src="/download.svg" width="20"></img>
             <h4 className="disable-mobile">Download CSV</h4>
           </div>
@@ -36,8 +55,8 @@ const Header = () => {
         </div>
       </div>
       {addUser && (
-        <Modal modalClass="modal-verify" >
-          <AddUser handler={addUserHandler}/>
+        <Modal modalClass="modal-verify">
+          <AddUser handler={addUserHandler} />
         </Modal>
       )}
     </>

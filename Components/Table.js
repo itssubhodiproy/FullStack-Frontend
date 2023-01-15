@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./css/Table.module.css";
 import { PageContext } from "../Helper/context";
 import { DeleteUser } from "./modals/DeleteUser";
@@ -6,7 +6,7 @@ import Modal from "../Helper/Modal";
 import { EditForm } from "./modals/EditForm";
 import { getSingleUser } from "../Helper/Api";
 
-const Table = ({ page }) => {
+const Table = () => {
   const [EditModal, setEditModal] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
   const { Data } = useContext(PageContext);
@@ -123,9 +123,6 @@ const Table = ({ page }) => {
       )}
       {EditModal && (
         <Modal modalClass="modal-verify">
-          {/* <EditUser handler={CloseEditModal} id={userId} /> */}
-          {/* <div>{userId}</div>
-          <button onClick={CloseEditModal}>Click Me</button> */}
           <EditForm
             handler={CloseEditModal}
             userId={userId}
