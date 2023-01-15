@@ -4,7 +4,7 @@ import { PageContext } from "../Helper/context";
 import { DeleteUser } from "./modals/DeleteUser";
 import Modal from "../Helper/Modal";
 import { EditForm } from "./modals/EditForm";
-import api from "../api";
+import { getSingleUser } from "../Helper/Api";
 
 const Table = ({ page }) => {
   const [EditModal, setEditModal] = useState(false);
@@ -15,10 +15,14 @@ const Table = ({ page }) => {
 
   const OpenEditModal = async (e) => {
     if (EditModal === false) {
-      const res = await api.get(`/user?id=${e.target.id}`);
-      setUserDataObj(res.data.singleUser);
-      setUserId(e.target.id);
-      setEditModal(true);
+      const res = await getSingleUser(e.target.id);
+      if (res.status == 200) {
+        setUserDataObj(res.data.singleUser);
+        setUserId(e.target.id);
+        setEditModal(true);
+      } else {
+        console.log("error", res);
+      }
     }
   };
   const CloseEditModal = () => {
@@ -122,7 +126,11 @@ const Table = ({ page }) => {
           {/* <EditUser handler={CloseEditModal} id={userId} /> */}
           {/* <div>{userId}</div>
           <button onClick={CloseEditModal}>Click Me</button> */}
-          <EditForm handler={CloseEditModal} userId={userId} userData={userDataObj}/>
+          <EditForm
+            handler={CloseEditModal}
+            userId={userId}
+            userData={userDataObj}
+          />
         </Modal>
       )}
     </table>

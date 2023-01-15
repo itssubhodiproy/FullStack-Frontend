@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./css/Footer.module.css";
 import { PageContext } from "../Helper/context";
 
-export const Footer = () => {
+const Footer = () => {
   const [middlePage, setMiddlePage] = useState(3);
   const { activePage, setActivePage, totalLength } = useContext(PageContext);
   const [totalPage, setTotalPage] = useState();
@@ -12,7 +12,6 @@ export const Footer = () => {
   };
 
   const incrementRootPage = () => {
-    console.log(totalPage);
     if (middlePage + 1 <= totalPage - 2) setMiddlePage(middlePage + 1);
   };
   const decrementRootPage = () => {
@@ -95,3 +94,6 @@ export const Footer = () => {
     </div>
   );
 };
+
+
+export default Footer

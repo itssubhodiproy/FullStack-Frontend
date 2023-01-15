@@ -201,7 +201,7 @@ body {
   color: var(--pink);
 }
 .text-secondary {
-  color: var(--secondary);
+  color: rgb(128, 128, 128);
 }
 .text-grey {
   color: var(--dark-grey);

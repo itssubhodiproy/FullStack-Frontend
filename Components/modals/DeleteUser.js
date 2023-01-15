@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import styles from "./css/common.module.css";
 import { PageContext } from "../../Helper/context";
-import api from "../../api";
+import { deleteUserApi } from "../../Helper/Api";
 
 export const DeleteUser = ({ handler, userId }) => {
   const { setTriggerThisApi } = useContext(PageContext);
 
   const deleteUserHandler = async () => {
     try {
-      const res = await api.delete(`/delete-user?id=${userId}`);
+      const res = await deleteUserApi(userId);
       if (res.status == 200) {
         setTriggerThisApi((prev) => !prev);
         console.log("User deleted successfully");

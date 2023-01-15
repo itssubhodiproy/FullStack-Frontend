@@ -1,37 +1,25 @@
 import { useEffect, useState } from "react";
-import Table from "../componets/Table";
-import Header from "../componets/Header";
-import { Footer } from "../componets/Footer";
-import api from "../api";
-
+import Table from "../Components/Table";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
+import { getPageData, getAllData } from "../Helper/Api";
 import { PageContext } from "../Helper/context";
 
 export default function Home() {
   const [activePage, setActivePage] = useState(1);
   const [triggerThisApi, setTriggerThisApi] = useState(false);
-
   const [Data, setData] = useState([]);
   const [totalLength, setTotalLength] = useState(0);
 
   useEffect(() => {
     const getData = async () => {
-      const res = await api.get(`/user?limit=5&page=${activePage}`);
-      const resAll = await api.get(`/user`);
-      setData(res.data.user);
-      setTotalLength(resAll.data.user.length);
-      console.log(res.data.user);
+      const res = await getPageData({ limit: 5, activePage });
+      const resAll = await getAllData();
+      setData(res);
+      setTotalLength(resAll.length);
     };
     getData();
   }, [activePage, triggerThisApi]);
-
-  // useEffect(() => {
-  //   const getAllData = async () => {
-  //     const resAll = await api.get(`/user`);
-  //     setTotalLength(resAll.data.user.length);
-  //     console.log(resAll.data.user.length);
-  //   };
-  //   getAllData();
-  // }, [isAddUserSubmitted, isDeleteUser, isEditUser]);
 
   return (
     <>

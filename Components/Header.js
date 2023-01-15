@@ -7,6 +7,8 @@ import AddUser from "./modals/AddUser";
 const Header = () => {
   const [addUser, setAddUser] = useState(false);
 
+  const {totalLength} = useContext(PageContext);
+
   const addUserHandler = () => {
     setAddUser(!addUser);
   };
@@ -14,10 +16,10 @@ const Header = () => {
     <>
       <div className={`d-flex d-justify-space-between ${styles["header"]}`}>
         <div className="d-flex d-flex-column d-justify-start">
-          <div>Users</div>
-          <div className={`text disable-mobile`}>
+          <div>Total User: {totalLength}</div>
+          <h6 className={`text disable-mobile text-secondary`}>
             Manage your team members and their account permissions here
-          </div>
+          </h6>
         </div>
         <div className="d-flex d-justify-space-between gap-2">
           <div className="btn btn-secondary p-4 d-flex d-justify-center d-align-center gap-1">

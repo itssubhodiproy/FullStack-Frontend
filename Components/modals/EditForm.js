@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import api from "../../api";
 import styles from "./css/common.module.css";
 import { PageContext } from "../../Helper/context";
+import { updateUserApi } from "../../Helper/Api";
 
 export const EditForm = ({ handler, userData }) => {
   const { setTriggerThisApi } = useContext(PageContext);
@@ -12,14 +13,18 @@ export const EditForm = ({ handler, userData }) => {
   const [Status, setStatus] = useState(userData.status);
 
   const EditUserOnSubmit = async () => {
-    if (Name == "" || Email == "" || Role == "" || Status == "") return;
+    if (Name == "" || Email == "" || Role == "" || Status == "") {
+      console.log("Please fill all the fields");
+      return;
+    }
     try {
-      const res = await api.patch(`/update-user?id=${userData._id}`, {
+      const data = {
         name: Name,
         email: Email,
         role: Role,
         status: Status,
-      });
+      };
+      const res = await updateUserApi(userData._id, data);
       if (res.status == 200) {
         console.log("User updated successfully!");
         setTriggerThisApi((prev) => !prev);

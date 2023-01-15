@@ -1,9 +1,7 @@
 import React, { useState, useContext } from "react";
-import api from "../../api";
 import styles from "./css/common.module.css";
 import { PageContext } from "../../Helper/context";
-
-import { ToastContainer, toast } from "react-toastify";
+import { addUserApi } from "../../Helper/Api";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddUser = ({ handler }) => {
@@ -16,24 +14,12 @@ const AddUser = ({ handler }) => {
 
   const addUser = async () => {
     // if input field is empty throw an error
-    if (Name == "" || Email == "") {
+    if (Name == "" || Email == "" || Role == "" || Status == "") {
       console.log("Please fill all the fields");
-      toast.warn("Please fill all the fields!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-
       return;
     }
-
     try {
-      const res = await api.post("/create-user", {
+      const res = await addUserApi({
         name: Name,
         email: Email,
         status: Role,
@@ -48,7 +34,6 @@ const AddUser = ({ handler }) => {
       console.log("error", error);
     }
   };
-
   return (
     <>
       <div
@@ -63,7 +48,6 @@ const AddUser = ({ handler }) => {
           </div>
           <div className="d-flex d-flex-column gap-2">
             <div className="d-flex d-flex-column">
-              {/* <div className="text">Name</div> */}
               <input
                 placeholder="Name"
                 value={Name}
@@ -73,7 +57,6 @@ const AddUser = ({ handler }) => {
               ></input>
             </div>
             <div className="d-flex d-flex-column">
-              {/* <div className="text">Email</div> */}
               <input
                 placeholder="Email"
                 value={Email}
@@ -130,20 +113,6 @@ const AddUser = ({ handler }) => {
             <h3 className="disable-mobile">Add</h3>
           </div>
         </div>
-
-        {/* Toast Message */}
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
       </div>
     </>
   );
