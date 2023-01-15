@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import api from "../../api";
+import React, { useContext, useState } from "react";
 import styles from "./css/common.module.css";
 import { PageContext } from "../../Helper/context";
 import { updateUserApi } from "../../Helper/Api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const EditForm = ({ handler, userData }) => {
   const { setTriggerThisApi } = useContext(PageContext);
@@ -15,6 +16,16 @@ export const EditForm = ({ handler, userData }) => {
   const EditUserOnSubmit = async () => {
     if (Name == "" || Email == "" || Role == "" || Status == "") {
       console.log("Please fill all the fields");
+      toast.warn("Please fill all the fields!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
     try {
@@ -119,6 +130,18 @@ export const EditForm = ({ handler, userData }) => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

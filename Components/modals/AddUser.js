@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import styles from "./css/common.module.css";
 import { PageContext } from "../../Helper/context";
 import { addUserApi } from "../../Helper/Api";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddUser = ({ handler }) => {
@@ -16,6 +17,16 @@ const AddUser = ({ handler }) => {
     // if input field is empty throw an error
     if (Name == "" || Email == "" || Role == "" || Status == "") {
       console.log("Please fill all the fields");
+      toast.warn("Please fill all the fields!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
     try {
@@ -114,6 +125,18 @@ const AddUser = ({ handler }) => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
