@@ -25,8 +25,19 @@ export const deleteUserApi = async (id) => {
   return res;
 };
 
-export const updateUserApi = async (id, data ) => {
+export const updateUserApi = async (id, data) => {
   const res = await api.patch(`/update-user?id=${id}`, data);
+  return res;
+};
+
+export const searchUserApi = async ({ searchKey, searchValue }) => {
+  console.log(searchKey, searchValue);
+  const res = await api.get(`/search?${searchKey}=${searchValue}`);
+  return res;
+};
+
+export const SendMailApi = async () => {
+  const res = await api.get(`/send-mail`);
   return res;
 };
 

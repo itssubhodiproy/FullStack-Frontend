@@ -2,6 +2,22 @@
     background-color: rgb(233, 233, 233);
     color: rgb(0, 0, 0);
     padding: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .input{
+        width: 70vw
+    }
+}
+.section{
+    justify-content: center;
+}
+@media screen and (max-width: 768px) {
+    .section{
+        justify-content: center;
+    }
+}
+.search-icon{
+    border: 2px solid var(--primary);
 }

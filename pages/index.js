@@ -14,6 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     const getData = async () => {
+      setData([]);
       const res = await getPageData({ limit: 5, activePage });
       const resAll = await getAllData();
       setData(res);
@@ -22,6 +23,8 @@ export default function Home() {
     };
     getData();
   }, [activePage, triggerThisApi]);
+
+  useEffect(() => {}, [Data]);
 
   return (
     <>
@@ -34,7 +37,7 @@ export default function Home() {
           Data,
           setData,
           setTriggerThisApi,
-          AllData
+          AllData,
         }}
       >
         <div className="d-flex d-align-center d-justify-center center">
