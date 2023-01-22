@@ -15,10 +15,18 @@ export const EditForm = ({ handler, userData }) => {
   const [Role, setRole] = useState(userData.role);
   const [Status, setStatus] = useState(userData.status);
   const [Message, setMessage] = useState(userData.message);
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(
+    userData.status == "Active" ? true : false
+  );
 
   const EditUserOnSubmit = async () => {
-    if (Name == "" || Email == "" || Role == "" || Status == ""|| Message == "") {
+    if (
+      Name == "" ||
+      Email == "" ||
+      // Role == "" ||
+      Status == "" ||
+      Message == ""
+    ) {
       console.log("Please fill all the fields");
       toast.warn("Please fill all the fields!", {
         position: "top-center",
@@ -38,7 +46,7 @@ export const EditForm = ({ handler, userData }) => {
         email: Email,
         mobile: Mobile,
         role: Role,
-        status: Status,
+        status: toggle ? "Active" : "Inactive",
         message: Message,
       };
       const res = await updateUserApi(userData._id, data);
